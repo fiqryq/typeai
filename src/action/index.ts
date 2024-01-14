@@ -39,12 +39,12 @@ export async function generateType(state: StateType, form: FormData): Promise<an
     const data = parse.data
 
     try {
-        const prompt = `Your task is to generate a TypeScript type definition for a provided JSON structure. If the JSON structure is invalid, silently correct it without generating any additional messages. The output should be strictly the TypeScript code.
-        with this criteria : 
-        - ${data.type ? `using ${data.type}` : ''}
+        const prompt = `Generate a TypeScript type definition from a given JSON structure, correcting any invalidity silently. The output should be the TypeScript code only. Follow these rules:
+        - ${data.type ? `use ${data.type}` : 'use interface'}.
         - ${isEnum === 'on' ? 'use union type instead of enum' : ''}
-        - ${isJavascriptly === 'on' ? 'using javascript convention using camelCase' : ''}
-        - ${isOptional === 'on' ? 'make all property optional' : ''}
+        - If ${isJavascriptly === 'on' ? 'follow JavaScript conventions by using camelCase.' : ''}
+        - ${isOptional === 'on' ? 'make all properties optional.' : ''}
+        - use export
         `
         const response = await fetch('https://api.openai.com/v1/chat/completions',
             {
