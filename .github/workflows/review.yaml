@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: RebotAI Code Review
-        uses: fiqryq/rebotai@v1.0.0
+        uses: fiqryq/rebotai@v1.0.1
         with:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
