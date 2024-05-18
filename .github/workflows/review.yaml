@@ -1,0 +1,21 @@
+name: Code Review with RebotAI
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  code_review:
+    if: >
+      github.event.issue.pull_request != null &&
+      contains(github.event.comment.body, '/review')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: RebotAI Code Review
+        uses: fiqryq/rebotai@v1.0.0
+        with:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
