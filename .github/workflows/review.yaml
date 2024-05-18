@@ -14,6 +14,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Install dependencies
+        run: npm install
+
       - name: Use RebotAI action
         uses: fiqryq/rebotai@v1.0.4
         with:
